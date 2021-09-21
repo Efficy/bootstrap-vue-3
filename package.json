@@ -68,12 +68,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cdmoro/bootstrap-vue-3.git"
+    "url": "https://github.com/Efficy/bootstrap-vue-3.git"
   },
   "bugs": {
-    "url": "https://github.com/cdmoro/bootstrap-vue-3/issues"
+    "url": "https://github.com/Efficy/bootstrap-vue-3/issues"
   },
-  "homepage": "https://github.com/cdmoro/bootstrap-vue-3",
+  "homepage": "https://github.com/Efficy/bootstrap-vue-3",
   "keywords": [
     "bootstrap",
     "components",
