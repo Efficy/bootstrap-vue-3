@@ -7,6 +7,28 @@
     <b-form-checkbox v-model="showPassword">Show password</b-form-checkbox>
     {{ password }}
 
+    <h5 class="my-3">Navigation (Links)</h5>
+    <div id="nav">
+      <b-link :to="{name: 'Home', path: '/' /* path is used when vue-router is not present */}"
+        >Home</b-link
+      >
+      <br />
+      <b-link
+        :to="{
+          name: 'About',
+          params: {id: '456'},
+          query: {param: 'someVal'},
+          path: '/about' /* path is used when vue-router is not present */,
+        }"
+      >
+        About
+      </b-link>
+    </div>
+    <p>NB: navigation behavior depends of the usage of "vue-router"</p>
+    <!-- activate "vue-router" in "main.ts" to test the "router-view" component
+      <router-view></router-view>
+    -->
+
     <h5 class="my-3">Dropdown</h5>
 
     <h6 class="m-2">Sizes</h6>
@@ -665,13 +687,11 @@
       Pressed State: <strong>{{ isPressed }}</strong>
     </p>
 
-    <b-button v-b-tooltip.top :title="tooltip"> Tolltip on top </b-button>
-    <b-button @click="tooltip = `${new Date()} <strong>fechaaa</strong>`">
-      Change tooltip
-    </b-button>
-    <b-button v-b-tooltip.left title="Tooltip on left"> Tolltip on left </b-button>
-    <b-button v-b-tooltip.right.click title="Tooltip on right"> Tolltip on right </b-button>
-    <b-button v-b-tooltip.bottom title="Tooltip on bottom"> Tolltip on bottom </b-button>
+    <b-button v-b-tooltip.top :title="tooltip"> Tooltip on top </b-button>
+    <b-button @click="setTooltip"> Change tooltip </b-button>
+    <b-button v-b-tooltip.left title="Tooltip on left"> Tooltip on left </b-button>
+    <b-button v-b-tooltip.right.click title="Tooltip on right"> Tooltip on right </b-button>
+    <b-button v-b-tooltip.bottom title="Tooltip on bottom"> Tooltip on bottom </b-button>
 
     <b-button id="popover-target-1"> Hover Me </b-button>
     <b-popover target="popover-target-1" triggers="click" placement="top">
@@ -793,7 +813,9 @@
         <div class="col-6">Value: {{ checkedString }}</div>
       </div>
       <div class="mx-4 my-1">
-        <button class="btn btn-primary mx-1" @click="checkedString = 'correct'">Set correct</button>
+        <b-button class="mx-1" variant="primary" @click="checkedString = 'correct'"
+          >Set correct</b-button
+        >
         <button class="btn btn-primary mx-1" @click="checkedString = 'incorrect'">
           Set incorrect
         </button>
@@ -1006,16 +1028,90 @@
       <div v-b-visible.once="handleVisible">Handle Visible Test</div>
       <div v-if="handledVisible">This should only show if handleVisible was triggered</div>
     </div>
+    <h3>Pagination</h3>
+    <div class="d-flex">
+      <b-pagination
+        v-model="paginationPageNumber"
+        :limit="paginationLimit"
+        :total-rows="paginationRows"
+        :per-page="paginationPerPage"
+        first-number
+        last-number
+        @page-click="handlePaginationPageClick"
+      >
+      </b-pagination>
+      <span class="mx-3">Select page 7 is prevented</span>
+    </div>
     <b-pagination
-      v-model:currentPage="paginationPageNumber"
+      v-model="paginationPageNumber"
       :limit="paginationLimit"
       :total-rows="paginationRows"
       :per-page="paginationPerPage"
-      first-number
-      last-number
     >
     </b-pagination>
-
+    <b-pagination
+      v-model="paginationPageNumber"
+      :limit="paginationLimit"
+      :total-rows="paginationRows"
+      :per-page="paginationPerPage"
+      prev-text="Prev"
+      next-text="Next"
+      first-text="First"
+      last-text="Last"
+    >
+    </b-pagination>
+    <b-pagination
+      v-model="paginationPageNumber"
+      :total-rows="paginationRows"
+      :per-page="paginationPerPage"
+      class="mt-4"
+    >
+      <template #first-text><span class="text-success">First</span></template>
+      <template #prev-text><span class="text-danger">Prev</span></template>
+      <template #next-text><span class="text-warning">Next</span></template>
+      <template #last-text><span class="text-info">Last</span></template>
+      <template #ellipsis-text>
+        <b-spinner small type="grow"></b-spinner>
+        <b-spinner small type="grow"></b-spinner>
+        <b-spinner small type="grow"></b-spinner>
+      </template>
+      <template #page="{page, active}">
+        <b v-if="active">{{ page }}</b>
+        <i v-else>{{ page }}</i>
+      </template>
+    </b-pagination>
+    <b-pagination
+      v-model="paginationPageNumber"
+      :limit="paginationLimit"
+      :total-rows="paginationRows"
+      :per-page="paginationPerPage"
+      prev-text="Prev"
+      next-text="Next"
+      :first-class="paginationDangerClasses"
+      first-text="First"
+      last-text="Last"
+      last-class="border border-4 border-info"
+      ellipsis-class="border border-3 border-success"
+    >
+    </b-pagination>
+    <div class="overflow-auto">
+      <b-pagination
+        v-model="paginationPageNumber"
+        :limit="paginationLimit"
+        :total-rows="paginationRows"
+        :per-page="paginationPerPage"
+        prev-text="Prev"
+        next-text="Next"
+        first-text="First"
+        last-text="Last"
+        align="end"
+      >
+      </b-pagination>
+    </div>
+    Current page : {{ paginationPageNumber }}
+    <div>
+      <button class="btn btn-primary" @click="paginationPageNumber = 4">Set to page 4</button>
+    </div>
     <h5 class="my-3">Icons</h5>
     <b-icon icon="exclamation-circle-fill" class="m-2"></b-icon>
 
@@ -1037,6 +1133,20 @@
     <b-icon icon="exclamation-circle-fill" size="4x" class="m-2"></b-icon>
     <b-icon icon="exclamation-circle-fill" size="5x" class="m-2"></b-icon>
 
+    <h5>Overlay</h5>
+    <div>
+      <b-overlay :show="showOverlay" rounded="sm">
+        <b-card title="Card with overlay" :aria-hidden="showOverlay ? 'true' : null">
+          <b-card-text>Laborum consequat non elit enim exercitation cillum.</b-card-text>
+          <b-card-text>Click the button to toggle the overlay:</b-card-text>
+          <b-button :disabled="showOverlay" variant="primary" @click="showOverlay = true">
+            Show overlay
+          </b-button>
+        </b-card>
+      </b-overlay>
+      <b-button class="mt-3" @click="showOverlay = !showOverlay">Toggle overlay</b-button>
+    </div>
+    <p></p>
     <!-- <b-button v-b-toggle:my-collapse>Collapse</b-button>
     <b-button @click="collapse = !collapse">Toggle collapse v-model</b-button>
     <b-collapse id="my-collapse" v-model="collapse">
@@ -1338,9 +1448,10 @@
 <script lang="ts">
 import {defineComponent, onMounted, ref} from 'vue'
 import {useBreadcrumb} from './composables/useBreadcrumb'
-import BDropdown from './components/BDropdown.vue'
+import BDropdown from './components/BDropdown/BDropdown.vue'
 import TableField from './types/TableField'
 import BFormCheckbox from './components/BFormCheckbox/BFormCheckbox.vue'
+import {BvEvent} from './utils/bvEvent'
 
 export default defineComponent({
   name: 'App',
@@ -1350,6 +1461,7 @@ export default defineComponent({
     const showPassword = ref(false)
     const input = ref()
     const tooltip = ref('Tooltip on <em>top</em>')
+    const setTooltip = () => (tooltip.value = `${new Date()} <strong>fechaaa</strong>`)
     const showModal = ref(false)
     const city = ref('')
     const breadcrumb = useBreadcrumb()
@@ -1396,6 +1508,10 @@ export default defineComponent({
     const paginationLimit = ref(8)
     const paginationPerPage = ref(2)
     const paginationRows = ref(40)
+    const paginationDangerClasses = ref(['border-danger', 'border-5', 'border'])
+
+    const showOverlay = ref(false)
+
     onMounted(() => {
       breadcrumb.items.push({
         text: 'Home',
@@ -1406,7 +1522,14 @@ export default defineComponent({
         text: 'Hello',
       })
     })
+    const handlePaginationPageClick = (event: BvEvent, page: number) => {
+      if (page === 7) {
+        event.preventDefault()
+        return
+      }
 
+      console.log('page click', page)
+    }
     return {
       password,
       showPassword,
@@ -1414,6 +1537,7 @@ export default defineComponent({
       name,
       consoleLog,
       tooltip,
+      setTooltip,
       showModal,
       city,
       collapse,
@@ -1429,10 +1553,12 @@ export default defineComponent({
       checkedPlain,
       checkedAvailableCars,
       checkedSelectedCars,
+      handlePaginationPageClick,
       paginationPageNumber,
       paginationLimit,
       paginationPerPage,
       paginationRows,
+      paginationDangerClasses,
       setCheckedSelectedCars,
       radioDefault,
       radioButton,
@@ -1443,6 +1569,7 @@ export default defineComponent({
       radioSelected,
       radioAvailableCars,
       radioSelectedCars,
+      showOverlay,
     }
   },
   data() {

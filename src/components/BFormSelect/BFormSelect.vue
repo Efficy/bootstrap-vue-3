@@ -39,20 +39,21 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, nextTick, onActivated, onMounted, PropType, ref} from 'vue'
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onActivated,
+  onMounted,
+  PropType,
+  ref,
+  watch,
+} from 'vue'
 import BFormSelectOption from './BFormSelectOption.vue'
 import BFormSelectOptionGroup from './BFormSelectOptionGroup.vue'
 import useId from '../../composables/useId'
 import {Size} from '../../types'
-
-const getNested = (obj: any, path: string): any => {
-  if (!obj) return obj
-  if (path in obj) return obj[path]
-
-  const paths = path.split('.')
-
-  return getNested(obj[paths[0]], paths.splice(1).join('.'))
-}
+import {normalizeOptions} from '../../composables/useFormSelect'
 
 export default defineComponent({
   name: 'BFormSelect',
@@ -65,18 +66,18 @@ export default defineComponent({
     autofocus: {type: Boolean, default: false},
     disabled: {type: Boolean, default: false},
     disabledField: {type: String, default: 'disabled'},
-    form: {type: String},
+    form: {type: String, required: false},
     htmlField: {type: String, default: 'html'},
-    id: {type: String},
+    id: {type: String, required: false},
     labelField: {type: String, default: 'label'},
     multiple: {type: Boolean, default: false},
-    name: {type: String},
+    name: {type: String, required: false},
     options: {type: [Array, Object], default: () => []},
     optionsField: {type: String, default: 'options'},
     plain: {type: Boolean, default: false},
     required: {type: Boolean, default: false},
     selectSize: {type: Number, default: 0},
-    size: {type: String as PropType<Size>},
+    size: {type: String as PropType<Size>, required: false},
     state: {
       type: Boolean as PropType<boolean | null | undefined>,
       default: null,
@@ -85,7 +86,7 @@ export default defineComponent({
     valueField: {type: String, default: 'value'},
     modelValue: {type: [String, Array, Object], default: ''},
   },
-  emits: ['update:modelValue', 'change'],
+  emits: ['update:modelValue', 'change', 'input'],
   setup(props, {emit}) {
     const input = ref<HTMLElement>()
     const computedId = useId(props.id, 'input')
@@ -129,61 +130,10 @@ export default defineComponent({
       return state === false ? 'true' : null
     })
 
-    const formOptions = computed(() => normalizeOptions(props.options))
+    const formOptions = computed(() => normalizeOptions(props.options, 'BFormSelect', props))
     // /computed
 
     // methods
-    const normalizeOption = (option: any, key: string | null = null) => {
-      if (Object.prototype.toString.call(option) === '[object Object]') {
-        const {valueField, textField, optionsField, labelField, htmlField, disabledField} = props
-
-        const value = getNested(option, valueField)
-        const text = getNested(option, textField)
-        const html = getNested(option, htmlField)
-        const disabled = getNested(option, disabledField)
-
-        const options = option[optionsField] || null
-        if (options !== null) {
-          return {
-            label: String(getNested(option, labelField) || text),
-            options: normalizeOptions(options),
-          }
-        }
-
-        return {
-          value: typeof value === 'undefined' ? key || text : value,
-          text: String(typeof value === 'undefined' ? key : text),
-          html,
-          disabled: Boolean(disabled),
-        }
-      }
-      return {
-        value: key || option,
-        text: String(option),
-        disabled: false,
-      }
-    }
-    const normalizeOptions = (options: any[]): any => {
-      if (Array.isArray(options)) {
-        return options.map((option) => normalizeOption(option))
-      } else if (Object.prototype.toString.call(options) === '[object Object]') {
-        console.warn(
-          '[BootstrapVue warn]: BFormSelect - Setting prop "options" to an object is deprecated. Use the array format instead.'
-        )
-
-        return Object.keys(options).map((key: string) => {
-          const el: any = options[key]
-          switch (typeof el) {
-            case 'object':
-              return normalizeOption(el.text, String(el.value))
-            default:
-              return normalizeOption(el, String(key))
-          }
-        })
-      }
-
-      return []
-    }
 
     const onChange = (evt: any) => {
       const {target} = evt
@@ -206,6 +156,13 @@ export default defineComponent({
       }
     }
     // /methods
+
+    watch(
+      () => props.modelValue,
+      (newValue) => {
+        emit('input', newValue)
+      }
+    )
 
     return {
       input,

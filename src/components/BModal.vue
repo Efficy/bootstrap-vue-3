@@ -14,23 +14,25 @@
           <div class="modal-body">
             <slot />
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-              @click="$emit('cancel')"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              @click="$emit('ok')"
-            >
-              OK
-            </button>
+          <div v-if="!hideFooter" class="modal-footer">
+            <slot name="footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                @click="$emit('cancel')"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                @click="$emit('ok')"
+              >
+                OK
+              </button>
+            </slot>
           </div>
         </div>
       </div>
@@ -57,6 +59,7 @@ export default defineComponent({
     show: {type: Boolean, default: false},
     size: {type: String},
     staticBackdrop: {type: Boolean},
+    hideFooter: {type: Boolean, default: false},
   },
   emits: ['update:modelValue', 'show', 'shown', 'hide', 'hidden', 'hide-prevented', 'ok', 'cancel'],
   setup(props, {emit}) {
@@ -75,18 +78,22 @@ export default defineComponent({
       'modal-dialog-scrollable': props.scrollable,
     }))
 
-    useEventListener(element, 'shown.bs.modal', () => emit('shown'))
-    useEventListener(element, 'hidden.bs.modal', () => emit('hidden'))
-    useEventListener(element, 'hidePrevented.bs.modal', () => emit('hide-prevented'))
+    useEventListener(element, 'shown.bs.modal', (e) => emit('shown', e))
+    useEventListener(element, 'hidden.bs.modal', (e) => emit('hidden', e))
+    useEventListener(element, 'hidePrevented.bs.modal', (e) => emit('hide-prevented', e))
 
-    useEventListener(element, 'show.bs.modal', () => {
-      emit('show')
-      emit('update:modelValue', true)
+    useEventListener(element, 'show.bs.modal', (e) => {
+      emit('show', e)
+      if (!e.defaultPrevented) {
+        emit('update:modelValue', true)
+      }
     })
 
-    useEventListener(element, 'hide.bs.modal', () => {
-      emit('hide')
-      emit('update:modelValue', false)
+    useEventListener(element, 'hide.bs.modal', (e) => {
+      emit('hide', e)
+      if (!e.defaultPrevented) {
+        emit('update:modelValue', false)
+      }
     })
 
     onMounted(() => {
