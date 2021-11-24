@@ -6,9 +6,7 @@ import {resolve} from 'path'
 
 const config = defineConfig({
   resolve: {
-    alias: {
-      '@': `${resolve(__dirname, 'src')}`,
-    },
+    alias: {},
   },
 
   build: {
@@ -23,6 +21,7 @@ const config = defineConfig({
       // into your library
       external: ['vue'],
       output: {
+        exports: 'named',
         assetFileNames: `bootstrap-vue-3.[ext]`, //without this, it generates build/styles.css
         // Provide global variables to use in the UMD build
         // for externalized deps

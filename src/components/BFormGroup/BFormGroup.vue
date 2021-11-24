@@ -3,15 +3,23 @@ import {RX_SPACE_SPLIT} from '../../constants/regex'
 import {arrayIncludes} from '../../utils/array'
 
 import {cssEscape} from '../../utils/css-escape'
-import {attemptFocus, getAttr, isVisible, removeAttr, select, selectAll, setAttr} from '@/utils/dom'
+import {
+  attemptFocus,
+  getAttr,
+  isVisible,
+  removeAttr,
+  select,
+  selectAll,
+  setAttr,
+} from '../../utils/dom'
 import {IS_BROWSER} from '../../utils/env'
 import {isBoolean} from '../../utils/inspect'
 import {stringToInteger} from '../../utils/number'
 import {suffixPropName} from '../../utils/props'
 import {computed, defineComponent, h, nextTick, onMounted, ref, watch} from 'vue'
-import useId from '@/composables/useId'
-import {normalizeSlot} from '@/utils/normalize-slot'
-import getID from '@/utils/getID'
+import useId from '../../composables/useId'
+import {normalizeSlot} from '../../utils/normalize-slot'
+import getID from '../../utils/getID'
 import BCol from '../BCol.vue'
 import BFormValidFeedback from '../BForm/BFormValidFeedback.vue'
 import BFormInvalidFeedback from '../BForm/BFormInvalidFeedback.vue'
@@ -64,6 +72,7 @@ export default defineComponent({
     tooltip: {type: Boolean, default: false},
     validFeedback: {type: String, required: false},
     validated: {type: Boolean, default: false},
+    floating: {type: Boolean, default: false},
   },
   setup(props, {attrs}) {
     const ariaDescribedby: string | null = null as string | null
@@ -345,11 +354,17 @@ export default defineComponent({
       $validFeedback,
       $description,
     ]
+    if (!this.isHorizontal && props.floating) contentBlocks.push($label)
 
     let $content = h(
       'div',
       {
         ref: 'content',
+        class: [
+          {
+            'form-floating': !this.isHorizontal && props.floating,
+          },
+        ],
       },
       contentBlocks
     )
@@ -387,7 +402,9 @@ export default defineComponent({
       rowProps,
       this.isHorizontal && isFieldset
         ? [h(BFormRow, {}, {default: () => [$label, $content]})]
-        : [$label, $content]
+        : this.isHorizontal || !props.floating
+        ? [$label, $content]
+        : [$content]
     )
   },
 })

@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 
-# Comparision with BoostrapVue
+# Comparison with BoostrapVue
 
 In this section, you'll see a full list of BootstrapVue components (standard and non-standard) and the coverage status for `properties`, `slots`, `events`, etc. Also, we specify the new features of Bootstrap **v5** in each component that requires it.
 
@@ -131,22 +131,22 @@ For more information, you can visit the Bootstrap v5 [migration guide](https://g
 | Property              | Status                                                                               | Observations |
 | --------------------- | ------------------------------------------------------------------------------------ | ------------ |
 | active                | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
-| active-class          | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
-| append                | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
-| aria-current          | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| active-class          | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| append                | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| aria-current          | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 | disabled              | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
-| exact                 | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
-| exact-active-class    | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| exact                 | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| exact-active-class    | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 | href                  | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 | html                  | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
 | no-prefetch           | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
 | prefetch              | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
-| rel                   | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
-| replace               | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
-| router-component-name | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| rel                   | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| replace               | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| router-component-name | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 | target                | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 | text                  | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
-| to                    | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| to                    | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 
 ### Slots
 
@@ -177,7 +177,7 @@ For more information, you can visit the Bootstrap v5 [migration guide](https://g
 | no-prefetch           | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |                                                    |
 | pill                  | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |                                                    |
 | prefetch              | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |                                                    |
-| pressed               | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed | vue3 no longers support sync. Use v-model:pressed  |
+| pressed               | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed | vue3 no longer support sync. Use v-model:pressed   |
 | rel                   | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |                                                    |
 | replace               | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |                                                    |
 | router-component-name | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |                                                    |
@@ -441,6 +441,34 @@ This is a <Badge type="warning" text="non-standard" /> component.
 
 ## Collapse
 
+### Properties
+
+| Property  | Status                                                                               | Observations |
+| --------- | ------------------------------------------------------------------------------------ | ------------ |
+| accordion | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| appear    | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| id        | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| is-nav    | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| tag       | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| visible   | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+
+### Slots
+
+| Property  | Status                                                                               |
+| --------- | ------------------------------------------------------------------------------------ |
+| `default` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |
+
+### Events
+
+| Property            | Status                                                                               | Observations |
+| ------------------- | ------------------------------------------------------------------------------------ | ------------ |
+| bv::collapse::state | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| hidden              | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| hide                | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| show                | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| shown               | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| update:modelValue   | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+
 ## Dropdown
 
 ### Properties
@@ -495,7 +523,7 @@ This is a <Badge type="warning" text="non-standard" /> component.
 | `shown`  | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 | `toggle` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
 
-### Sub components
+### sub-components
 
 #### DropDownItem
 
@@ -585,6 +613,27 @@ This is a <Badge type="warning" text="non-standard" /> component.
 This is a <Badge type="warning" text="non-standard" /> component.
 
 ## Form
+
+### Properties
+
+| Property     | Status                                                                               | Observations                 |
+| ------------ | ------------------------------------------------------------------------------------ | ---------------------------- |
+| `id`         | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |                              |
+| `inline`     | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   | not supported in Bootstrap 5 |
+| `novalidate` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |                              |
+| `validate`   | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |                              |
+
+### Slots
+
+| Property  | Status                                                                               | Observations |
+| --------- | ------------------------------------------------------------------------------------ | ------------ |
+| `default` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+
+### Events
+
+| Property | Status                                                                               | Observations |
+| -------- | ------------------------------------------------------------------------------------ | ------------ |
+| `submit` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 
 ## Form Checkbox
 
@@ -752,6 +801,25 @@ Bootstrap 5 changed the classes for alignment. Use `start`, `center` and `end` i
 | `input`             | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 | `update:modelValue` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 
+## Form Invalid Feedback
+
+### Properties
+
+| Property     | Status                                                                               | Observations |
+| ------------ | ------------------------------------------------------------------------------------ | ------------ |
+| `aria-live`  | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `force-show` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `id`         | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `role`       | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `state`      | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `tooltip`    | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+
+### Slots
+
+| Property  | Status                                                                               | Observations |
+| --------- | ------------------------------------------------------------------------------------ | ------------ |
+| `default` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+
 ## Form Radio
 
 ### Properties
@@ -897,11 +965,85 @@ This is a <Badge type="warning" text="non-standard" /> component.
 
 This is a <Badge type="warning" text="non-standard" /> component.
 
+## Form Text
+
+### Properties
+
+| Property       | Status                                                                               | Observations      |
+| -------------- | ------------------------------------------------------------------------------------ | ----------------- |
+| `id`           | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |                   |
+| `inline`       | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed | used `.form-text` |
+| `tag`          | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |                   |
+| `text-variant` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |                   |
+
+### Slots
+
+| Property  | Status                                                                               | Observations |
+| --------- | ------------------------------------------------------------------------------------ | ------------ |
+| `default` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+
 ## Form Textarea
+
+### Properties
+
+| Property         | Status                                                                               | Observations |
+| ---------------- | ------------------------------------------------------------------------------------ | ------------ |
+| `aria-invalid`   | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `autocomplete`   | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `autofocus`      | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `debounce`       | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| `disabled`       | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `form`           | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `formatter`      | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `id`             | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `lazy`           | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| `lazy-formatter` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| `max-rows`       | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| `modelValue`     | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `name`           | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `no-auto-shrink` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed   |              |
+| `no-resize`      | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `number`         | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `placeholder`    | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `plaintext`      | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `readonly`       | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `required`       | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `rows`           | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `size`           | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `state`          | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `wrap`           | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+
+### Events
+
+| Property            | Status                                                                               | Observations |
+| ------------------- | ------------------------------------------------------------------------------------ | ------------ |
+| `blur`              | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `change`            | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `input`             | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `update:modelValue` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 
 ## Form Timepicker
 
 This is a <Badge type="warning" text="non-standard" /> component.
+
+## Form Valid Feedback
+
+### Properties
+
+| Property     | Status                                                                               | Observations |
+| ------------ | ------------------------------------------------------------------------------------ | ------------ |
+| `aria-live`  | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `force-show` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `id`         | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `role`       | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `state`      | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+| `tooltip`    | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
+
+### Slots
+
+| Property  | Status                                                                               | Observations |
+| --------- | ------------------------------------------------------------------------------------ | ------------ |
+| `default` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |              |
 
 ## Icon
 
@@ -1061,7 +1203,7 @@ This is a <Badge type="warning" text="non-standard" /> component.
 
 ## Jumbotron
 
-This components was suppresed in Boostrap `v5`.
+This component was removed in Boostrap `v5`.
 
 More information [here](https://getbootstrap.com/docs/5.0/migration/#jumbotron).
 
@@ -1121,7 +1263,7 @@ This is a <Badge type="warning" text="non-standard" /> component.
 
 ## Media
 
-This components was suppresed in Boostrap `v5`.
+This component was removed in Boostrap `v5`.
 
 More information [here](https://getbootstrap.com/docs/5.0/utilities/flex/#media-object).
 

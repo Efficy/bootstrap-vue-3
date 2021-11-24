@@ -3,10 +3,10 @@ import BAccordionItem from './BAccordionItem.vue'
 import BAlert from './BAlert.vue'
 import BAvatar from './BAvatar/BAvatar.vue'
 import BAvatarGroup from './BAvatar/BAvatarGroup.vue'
-import BBadge from './BBadge.vue'
-import BBreadcrumb from './BBreadcrumb.vue'
-import BBreadcrumbItem from './BBreadcrumbItem.vue'
-import BButton from './BButton.vue'
+import BBadge from './BBadge/BBadge.vue'
+import BBreadcrumb from './BBreadcrumb/BBreadcrumb.vue'
+import BBreadcrumbItem from './BBreadcrumb/BBreadcrumbItem.vue'
+import BButton from './BButton/BButton.vue'
 import BButtonGroup from './BButtonGroup.vue'
 import BButtonToolbar from './BButtonToolbar.vue'
 import BCard from './BCard/BCard.vue'
@@ -18,9 +18,9 @@ import BCardImg from './BCard/BCardImg.vue'
 import BCardSubTitle from './BCard/BCardSubTitle.vue'
 import BCardText from './BCard/BCardText.vue'
 import BCardTitle from './BCard/BCardTitle.vue'
-import BCarousel from './BCarousel.vue'
-import BCarouselSlide from './BCarouselSlide.vue'
-import BCloseButton from './BCloseButton.vue'
+import BCarousel from './BCarousel/BCarousel.vue'
+import BCarouselSlide from './BCarousel/BCarouselSlide.vue'
+import BCloseButton from './BButton/BCloseButton.vue'
 import BCol from './BCol.vue'
 import BCollapse from './BCollapse.vue'
 import BContainer from './BContainer.vue'
@@ -46,6 +46,7 @@ import BFormSelect from './BFormSelect/BFormSelect.vue'
 import BFormSelectOption from './BFormSelect/BFormSelectOption.vue'
 import BFormSelectOptionGroup from './BFormSelect/BFormSelectOptionGroup.vue'
 import BFormText from './BForm/BFormText.vue'
+import BFormTextarea from './BFormTextarea/BFormTextarea.vue'
 import BFormValidFeedback from './BForm/BFormValidFeedback.vue'
 import BIcon from './BIcon/BIcon.vue'
 import BIconstack from './BIcon/BIconstack.vue'
@@ -124,6 +125,7 @@ export default {
   BFormSelectOption,
   BFormSelectOptionGroup,
   BFormText,
+  BFormTextarea,
   BFormValidFeedback,
   BIcon,
   BIconstack,

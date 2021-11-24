@@ -35,10 +35,10 @@ import {getClasses, getInputClasses, getLabelClasses} from '../../composables/us
 import {computed, defineComponent, onMounted, PropType, Ref, ref, watch} from 'vue'
 import {InputSize} from '../../types'
 import useId from '../../composables/useId'
-import {HTMLElement} from '../../types/safe-types'
 
 export default defineComponent({
   name: 'BFormCheckbox',
+  inheritAttrs: false,
   props: {
     id: {type: String, default: undefined},
     ariaLabel: {type: String},
@@ -56,9 +56,9 @@ export default defineComponent({
     required: {type: Boolean, default: undefined},
     size: {type: String as PropType<InputSize>, default: 'md'},
     state: {type: Boolean, default: null},
-    uncheckedValue: {type: [Boolean, String, Array, Object], default: false},
-    value: {type: [Boolean, String, Array, Object], default: true},
-    modelValue: {type: [Boolean, String, Array, Object], default: null},
+    uncheckedValue: {type: [Boolean, String, Array, Object, Number], default: false},
+    value: {type: [Boolean, String, Array, Object, Number], default: true},
+    modelValue: {type: [Boolean, String, Array, Object, Number], default: null},
   },
   emits: ['update:modelValue', 'input', 'change'],
   setup(props, {emit}) {

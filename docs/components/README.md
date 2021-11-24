@@ -29,7 +29,13 @@ BootstrapVue 3 components
             <RouterLink to="./Card.html">Card</RouterLink> — A flexible and extensible content container. It includes options for headers and footers, a wide variety of content.
         </b-list-group-item>
         <b-list-group-item>
+            <RouterLink to="./Collapse.html">Collapse</RouterLink> — Easily toggle visibility of almost any content on your pages in a vertically collapsing container.
+        </b-list-group-item>
+        <b-list-group-item>
             <RouterLink to="./Dropdown.html">Dropdown</RouterLink> — Toggleable, contextual overlays for displaying lists of links and actions in a dropdown menu format.
+        </b-list-group-item>
+        <b-list-group-item>
+            <RouterLink to="./Form.html">Form</RouterLink> — Form component and helper components that optionally support inline form styles and validation states.
         </b-list-group-item>
         <b-list-group-item>
             <RouterLink to="./FormCheckbox.html">Form Checkbox</RouterLink> — Custom checkbox input and checkbox group to replace the browser default checkbox input, built on top of semantic and accessible markup. Optionally supports switch styling.
@@ -45,6 +51,9 @@ BootstrapVue 3 components
         </b-list-group-item>
         <b-list-group-item>
             <RouterLink to="./FormSelect.html">Form Select</RouterLink> — Bootstrap custom select using custom styles. 
+        </b-list-group-item>
+        <b-list-group-item>
+            <RouterLink to="./FormTextArea.html">Form Textarea</RouterLink> — Create multi-line text inputs with support for auto height sizing, minimum and maximum number of rows, and contextual states. 
         </b-list-group-item>
         <b-list-group-item>
             <RouterLink to="./Icon.html">Icon</RouterLink> — Icons designed to work with Bootstrap components, from form controls to navigation. 
