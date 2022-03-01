@@ -1,8 +1,9 @@
 import {defineUserConfig} from 'vuepress'
 import {componentReference} from './PluginComponentReference'
 import type {DefaultThemeOptions} from 'vuepress'
+import type {WebpackBundlerOptions} from '@vuepress/bundler-webpack'
 
-export default defineUserConfig<DefaultThemeOptions>({
+export default defineUserConfig<DefaultThemeOptions, WebpackBundlerOptions>({
   lang: 'en-US',
   base: '/bootstrap-vue-3/',
   title: 'BootstrapVue 3',
@@ -12,9 +13,11 @@ export default defineUserConfig<DefaultThemeOptions>({
   themeConfig: {
     logo: '/logo.png',
     repo: 'https://github.com/cdmoro/bootstrap-vue-3',
+    docsDir: 'docs',
     editLink: true,
     contributors: false,
     lastUpdated: true,
+    bundler: '@vuepress/bundler-webpack',
     themePlugins: {
       mediumZoom: false,
     },
@@ -57,6 +60,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             '/components/Pagination.md',
             '/components/Spinners.md',
             '/components/Tabs.md',
+            '/components/Toast.md',
           ],
         },
       ],
