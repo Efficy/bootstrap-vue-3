@@ -1,7 +1,8 @@
+import {describe, expect, it} from 'vitest'
 import {mount} from '@vue/test-utils'
 import {createContainer, waitNT} from '../../../tests/utils'
-import BFormRadioGroup from './BFormRadioGroup'
-import BFormRadio from './BFormRadio'
+import BFormRadioGroup from './BFormRadioGroup.vue'
+import BFormRadio from './BFormRadio.vue'
 
 const global = {components: {BFormRadio}}
 
@@ -311,7 +312,7 @@ describe('form-radio-group', () => {
       },
     })
 
-    expect(wrapper.vm.localChecked).toEqual('')
+    expect(wrapper.vm.modelValue).toEqual('')
     expect(wrapper.findAll('input[type=radio]').length).toBe(3)
 
     wrapper.unmount()
@@ -327,7 +328,7 @@ describe('form-radio-group', () => {
       },
     })
 
-    expect(wrapper.vm.localChecked).toEqual('')
+    expect(wrapper.vm.modelValue).toEqual('')
     expect(wrapper.classes()).toBeDefined()
 
     const $radios = wrapper.findAll('input[type=radio]')
@@ -354,7 +355,7 @@ describe('form-radio-group', () => {
     // computed in a `$nextTick()` on mount
     await waitNT(wrapper.vm)
 
-    expect(wrapper.vm.localChecked).toEqual('')
+    expect(wrapper.vm.modelValue).toEqual('')
     expect(wrapper.classes()).toBeDefined()
 
     const $radios = wrapper.findAll('input[type=radio]')
@@ -372,20 +373,22 @@ describe('form-radio-group', () => {
       attachTo: createContainer(),
       global,
       props: {
-        'options': ['one', 'two', 'three'],
-        'modelValue': '',
+        options: ['one', 'two', 'three'],
+        modelValue: '',
+      },
+      attrs: {
         'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
     })
 
-    expect(wrapper.vm.localChecked).toEqual('')
+    expect(wrapper.vm.modelValue).toEqual('')
     expect(wrapper.classes()).toBeDefined()
 
     const $radios = wrapper.findAll('input[type=radio]')
     expect($radios.length).toBe(3)
 
     await $radios[0].trigger('click')
-    expect(wrapper.vm.localChecked).toEqual('one')
+    expect(wrapper.vm.modelValue).toEqual('one')
     expect(wrapper.emitted('change')).toBeDefined()
     expect(wrapper.emitted('change').length).toBe(1)
     expect(wrapper.emitted('change')[0][0]).toEqual('one')
@@ -394,14 +397,14 @@ describe('form-radio-group', () => {
     expect(wrapper.emitted('update:modelValue')[0][0]).toEqual('one')
 
     await $radios[2].trigger('click')
-    expect(wrapper.vm.localChecked).toEqual('three')
+    expect(wrapper.vm.modelValue).toEqual('three')
     expect(wrapper.emitted('change').length).toBe(2)
     expect(wrapper.emitted('change')[1][0]).toEqual('three')
     expect(wrapper.emitted('update:modelValue').length).toBe(2)
     expect(wrapper.emitted('update:modelValue')[1][0]).toEqual('three')
 
     await $radios[0].trigger('click')
-    expect(wrapper.vm.localChecked).toEqual('one')
+    expect(wrapper.vm.modelValue).toEqual('one')
     expect(wrapper.emitted('change').length).toBe(3)
     expect(wrapper.emitted('change')[2][0]).toEqual('one')
     expect(wrapper.emitted('update:modelValue').length).toBe(3)
@@ -415,13 +418,15 @@ describe('form-radio-group', () => {
       attachTo: createContainer(),
       global,
       props: {
-        'options': ['one', 'two', 'three'],
-        'modelValue': 'two',
+        options: ['one', 'two', 'three'],
+        modelValue: 'two',
+      },
+      attrs: {
         'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
     })
 
-    expect(wrapper.vm.localChecked).toEqual('two')
+    expect(wrapper.vm.modelValue).toEqual('two')
     expect(wrapper.classes()).toBeDefined()
 
     const $radios = wrapper.findAll('input[type=radio]')
@@ -435,7 +440,7 @@ describe('form-radio-group', () => {
     await waitNT(wrapper.vm)
     await waitNT(wrapper.vm)
 
-    expect(wrapper.vm.localChecked).toEqual('three')
+    expect(wrapper.vm.modelValue).toEqual('three')
     expect($radios[0].element.checked).toBe(false)
     expect($radios[1].element.checked).toBe(false)
     expect($radios[2].element.checked).toBe(true)

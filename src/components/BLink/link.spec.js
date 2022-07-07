@@ -1,6 +1,7 @@
 import {mount} from '@vue/test-utils'
 import {createContainer} from '../../../tests/utils'
-import BLink from './BLink'
+import BLink from './BLink.vue'
+import {describe, expect, it, vitest} from 'vitest'
 
 describe('b-link', () => {
   it('has expected default structure', async () => {
@@ -181,26 +182,6 @@ describe('b-link', () => {
     wrapper.unmount()
   })
 
-  it('focus and blur methods work', async () => {
-    const wrapper = mount(BLink, {
-      attachTo: createContainer(),
-      props: {
-        href: '#foobar',
-      },
-    })
-
-    expect(wrapper.element.tagName).toBe('A')
-    expect(document.activeElement).not.toBe(wrapper.element)
-
-    wrapper.vm.focus()
-    expect(document.activeElement).toBe(wrapper.element)
-
-    wrapper.vm.blur()
-    expect(document.activeElement).not.toBe(wrapper.element)
-
-    wrapper.unmount()
-  })
-
   describe('click handling', () => {
     it('should invoke click handler bound by Vue when clicked on', async () => {
       let called = 0
@@ -226,8 +207,8 @@ describe('b-link', () => {
     })
 
     it('should invoke multiple click handlers bound by Vue when clicked on', async () => {
-      const spy1 = jest.fn()
-      const spy2 = jest.fn()
+      const spy1 = vitest.fn()
+      const spy2 = vitest.fn()
       const wrapper = mount(BLink, {
         attrs: {
           onClick: [spy1, spy2],
@@ -272,7 +253,7 @@ describe('b-link', () => {
     })
 
     it('should NOT invoke click handler bound via "addEventListener" when disabled and clicked', async () => {
-      const spy = jest.fn()
+      const spy = vitest.fn()
       const wrapper = mount(BLink, {
         props: {
           disabled: true,

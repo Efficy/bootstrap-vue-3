@@ -1,6 +1,7 @@
 import {mount} from '@vue/test-utils'
 import {createContainer, waitNT, waitRAF} from '../../../tests/utils'
-import BFormTextarea from './BFormTextarea'
+import BFormTextarea from './BFormTextarea.vue'
+import {afterEach, beforeEach, describe, expect, it, vitest} from 'vitest'
 
 describe('form-textarea', () => {
   it('has class form-control', async () => {
@@ -282,7 +283,7 @@ describe('form-textarea', () => {
   })
 
   it('emits a native focus event', async () => {
-    const spy = jest.fn()
+    const spy = vitest.fn()
     const wrapper = mount(BFormTextarea, {
       attrs: {
         onFocus: spy,
@@ -344,11 +345,13 @@ describe('form-textarea', () => {
   it('does not apply formatter on textarea when lazy', async () => {
     const wrapper = mount(BFormTextarea, {
       props: {
-        'formatter'(value) {
+        formatter(value) {
           return value.toLowerCase()
         },
-        'lazyFormatter': true,
-        'onUpdate:modelValue': async (modelValue) => wrapper.setProps({modelValue}),
+        lazyFormatter: true,
+      },
+      attrs: {
+        'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
       attachTo: createContainer(),
     })
@@ -372,12 +375,14 @@ describe('form-textarea', () => {
   it('applies formatter on blur when lazy', async () => {
     const wrapper = mount(BFormTextarea, {
       props: {
-        'modelValue': '',
-        'formatter'(value) {
+        modelValue: '',
+        formatter(value) {
           return value.toLowerCase()
         },
-        'lazyFormatter': true,
-        'onUpdate:modelValue': async (modelValue) => wrapper.setProps({modelValue}),
+        lazyFormatter: true,
+      },
+      attrs: {
+        'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
       attachTo: createContainer(),
     })
@@ -477,11 +482,13 @@ describe('form-textarea', () => {
   it('does not update value when non-lazy formatter returns false', async () => {
     const wrapper = mount(BFormTextarea, {
       props: {
-        'modelValue': 'abc',
-        'formatter'() {
+        modelValue: 'abc',
+        formatter() {
           return false
         },
-        'onUpdate:modelValue': async (modelValue) => wrapper.setProps({modelValue}),
+      },
+      attrs: {
+        'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
       attachTo: createContainer(),
     })
@@ -504,7 +511,7 @@ describe('form-textarea', () => {
 
   /* TODO: implement noWheel
   it('focused number input with no-wheel set to true works', async () => {
-    const spy = jest.fn()
+    const spy = vitest.fn()
     const wrapper = mount(BFormTextarea, {
       attachTo: createContainer(),
       props: {
@@ -532,7 +539,7 @@ describe('form-textarea', () => {
 
 
   it('focused number input with no-wheel set to false works', async () => {
-    const spy = jest.fn(() => {})
+    const spy = vitest.fn(() => {})
     const wrapper = mount(BFormTextarea, {
       attachTo: createContainer(),
       props: {
@@ -562,7 +569,7 @@ describe('form-textarea', () => {
 
 
   it('changing no-wheel after mount works', async () => {
-    const spy = jest.fn(() => {})
+    const spy = vitest.fn(() => {})
     const wrapper = mount(BFormTextarea, {
       attachTo: createContainer(),
       props: {
@@ -606,9 +613,11 @@ describe('form-textarea', () => {
   it('"lazy" modifier prop works', async () => {
     const wrapper = mount(BFormTextarea, {
       props: {
-        'type': 'text',
-        'lazy': true,
-        'onUpdate:modelValue': async (modelValue) => wrapper.setProps({modelValue}),
+        type: 'text',
+        lazy: true,
+      },
+      attrs: {
+        'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
     })
 
@@ -657,7 +666,7 @@ describe('form-textarea', () => {
 
   /* TODO: implement debounce
   it('"debounce" prop works', async () => {
-    jest.useFakeTimers()
+    vitest.useFakeTimers()
     const wrapper = mount(BFormTextarea, {
       props: {
         type: 'text',
@@ -687,7 +696,7 @@ describe('form-textarea', () => {
     expect(wrapper.emitted('input')[1][0]).toBe('ab')
 
     // Advance timer
-    jest.runOnlyPendingTimers()
+    vitest.runOnlyPendingTimers()
     // Should update the v-model
     expect($textarea.element.value).toBe('ab')
     // `v-model` update event should have emitted
@@ -745,7 +754,7 @@ describe('form-textarea', () => {
     expect(wrapper.emitted('input')[5][0]).toBe('abcd')
 
     // Advance timer
-    jest.runOnlyPendingTimers()
+    vitest.runOnlyPendingTimers()
     // Should update the v-model
     expect($textarea.element.value).toBe('abcd')
     // `v-model` update event should not have emitted new event
@@ -782,7 +791,7 @@ describe('form-textarea', () => {
 
     beforeEach(() => {
       // Mock `getBoundingClientRect()` so that the `isVisible(el)` test returns `true`
-      Element.prototype.getBoundingClientRect = jest.fn(() => ({
+      Element.prototype.getBoundingClientRect = vitest.fn(() => ({
         width: 24,
         height: 24,
         top: 0,

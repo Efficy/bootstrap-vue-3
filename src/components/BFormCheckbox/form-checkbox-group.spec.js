@@ -1,7 +1,8 @@
+import {describe, expect, it} from 'vitest'
 import {mount} from '@vue/test-utils'
 import {createContainer, waitNT} from '../../../tests/utils'
-import BFormCheckboxGroup from './BFormCheckboxGroup'
-import BFormCheckbox from './BFormCheckbox'
+import BFormCheckboxGroup from './BFormCheckboxGroup.vue'
+import BFormCheckbox from './BFormCheckbox.vue'
 
 const global = {components: {BFormCheckbox}}
 
@@ -347,8 +348,10 @@ describe('form-checkbox-group', () => {
       attachTo: createContainer(),
       global,
       props: {
-        'options': ['one', 'two', 'three'],
-        'modelValue': [],
+        options: ['one', 'two', 'three'],
+        modelValue: [],
+      },
+      attrs: {
         'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
     })
@@ -392,55 +395,6 @@ describe('form-checkbox-group', () => {
     wrapper.unmount()
   })
 
-  it('does not emit "input" event when value loosely changes', async () => {
-    const value = ['one', 'two', 'three']
-    const wrapper = mount(BFormCheckboxGroup, {
-      attachTo: createContainer(),
-      global,
-      props: {
-        'options': value.slice(),
-        'modelValue': value.slice(),
-        'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
-      },
-    })
-
-    expect(wrapper.classes()).toBeDefined()
-
-    const $inputs = wrapper.findAll('input[type=checkbox]')
-    expect($inputs.length).toBe(3)
-    expect(wrapper.vm.modelValue).toEqual(value)
-    expect($inputs[0].element.checked).toBe(true)
-    expect($inputs[1].element.checked).toBe(true)
-    expect($inputs[2].element.checked).toBe(true)
-
-    expect(wrapper.emitted('update:modelValue')).toBeUndefined()
-
-    // Set internal value to new array reference
-    wrapper.vm.localChecked = value.slice()
-    await waitNT(wrapper.vm)
-
-    expect(wrapper.vm.modelValue).toEqual(value)
-    expect($inputs[0].element.checked).toBe(true)
-    expect($inputs[1].element.checked).toBe(true)
-    expect($inputs[2].element.checked).toBe(true)
-
-    expect(wrapper.emitted('update:modelValue')).toBeUndefined()
-
-    // Set internal value to new array (reversed order)
-    wrapper.vm.localChecked = value.slice().reverse()
-    await waitNT(wrapper.vm)
-
-    expect(wrapper.vm.modelValue).toEqual(value.slice().reverse())
-    expect($inputs[0].element.checked).toBe(true)
-    expect($inputs[1].element.checked).toBe(true)
-    expect($inputs[2].element.checked).toBe(true)
-    expect(wrapper.emitted('update:modelValue')).toBeDefined()
-    expect(wrapper.emitted('update:modelValue').length).toBe(1)
-    expect(wrapper.emitted('update:modelValue')[0][0]).toEqual(value.slice().reverse())
-
-    wrapper.unmount()
-  })
-
   it('checkboxes reflect group checked v-model', async () => {
     const wrapper = mount(BFormCheckboxGroup, {
       attachTo: createContainer(),
@@ -455,13 +409,13 @@ describe('form-checkbox-group', () => {
 
     const $inputs = wrapper.findAll('input[type=checkbox]')
     expect($inputs.length).toBe(3)
-    expect(wrapper.vm.localChecked).toEqual(['two'])
+    expect(wrapper.vm.modelValue).toEqual(['two'])
     expect($inputs[0].element.checked).toBe(false)
     expect($inputs[1].element.checked).toBe(true)
     expect($inputs[2].element.checked).toBe(false)
 
     await wrapper.setProps({modelValue: ['three', 'one']})
-    expect(wrapper.vm.localChecked).toEqual(['three', 'one'])
+    expect(wrapper.vm.modelValue).toEqual(['three', 'one'])
     expect($inputs[0].element.checked).toBe(true)
     expect($inputs[1].element.checked).toBe(false)
     expect($inputs[2].element.checked).toBe(true)
@@ -481,7 +435,7 @@ describe('form-checkbox-group', () => {
     })
 
     expect(wrapper.classes()).toBeDefined()
-    expect(wrapper.vm.localChecked).toEqual([])
+    expect(wrapper.vm.modelValue).toEqual([])
 
     const $inputs = wrapper.findAll('input[type=checkbox]')
     expect($inputs.length).toBe(3)
@@ -503,7 +457,7 @@ describe('form-checkbox-group', () => {
       },
     })
 
-    expect(wrapper.vm.localChecked).toEqual([])
+    expect(wrapper.vm.modelValue).toEqual([])
 
     const $inputs = wrapper.findAll('input[type=checkbox]')
     expect($inputs.length).toBe(3)
@@ -525,7 +479,7 @@ describe('form-checkbox-group', () => {
       },
     })
 
-    expect(wrapper.vm.localChecked).toEqual([])
+    expect(wrapper.vm.modelValue).toEqual([])
 
     const $inputs = wrapper.findAll('input[type=checkbox]')
     expect($inputs.length).toBe(3)
@@ -548,7 +502,7 @@ describe('form-checkbox-group', () => {
       },
     })
 
-    expect(wrapper.vm.localChecked).toEqual([])
+    expect(wrapper.vm.modelValue).toEqual([])
 
     const $inputs = wrapper.findAll('input[type=checkbox]')
     expect($inputs.length).toBe(3)

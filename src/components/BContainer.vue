@@ -1,9 +1,8 @@
 <script lang="ts">
-import {Breakpoint} from '../types'
+import type {Breakpoint, Position} from '@/types'
 import {computed, defineComponent, h, onMounted, PropType, ref, VNode} from 'vue'
 import {ToastInstance, useToast} from './BToast/plugin'
 import BToaster from './BToast/BToaster.vue'
-import Position from '../types/position'
 export default defineComponent({
   name: 'BContainer',
   props: {
@@ -43,7 +42,7 @@ export default defineComponent({
       const subContainers: Array<VNode> = []
 
       toastInstance?.containerPositions.value.forEach((position) => {
-        subContainers.push(h(BToaster, {instance: toastInstance, position}))
+        subContainers.push(h(BToaster, {key: position, instance: toastInstance, position}))
       })
 
       return h('div', {class: [classes.value, props.position], ref: container}, [

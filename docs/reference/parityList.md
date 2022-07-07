@@ -963,7 +963,13 @@ This is a <Badge type="warning" text="non-standard" /> component.
 
 ## Form Tags
 
-This is a <Badge type="warning" text="non-standard" /> component.
+### `<b-form-tags>`
+
+![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) **COMPLETED**
+
+### `<b-form-tag>`
+
+![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) **COMPLETED**
 
 ## Form Text
 
@@ -1384,9 +1390,81 @@ This component is implemented in Bootstrap v5 as [Offcanvas](https://getbootstra
 
 This is a <Badge type="warning" text="non-standard" /> component.
 
+### `<b-skeleton>`
+
+![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) **COMPLETED**
+
+### `<b-skeleton-wrapper>`
+
+![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) **COMPLETED**
+
+### `<b-skeleton-table>`
+
+![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) **COMPLETED**
+
+### `<b-skeleton-img>`
+
+Not implemented yet.
+
+### `<b-skeleton-icon>`
+
+Since we do not implement Bootstrap icons or any related icon package. This component is slighly different from the BootstrapVue component, it was refactoring as a SVG wrapper.
+
+#### Properties
+
+| Property    | Status                                                                               |
+| ----------- | ------------------------------------------------------------------------------------ |
+| `animation` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |
+
+#### Slots
+
+| Name      | Status                                                                               |
+| --------- | ------------------------------------------------------------------------------------ |
+| `default` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) Completed |
+
 ## Spinner
 
 ## Table
+
+### `<b-table-simple>`
+
+#### Properties
+
+| Property             | Status                                                                             | Observations |
+| -------------------- | ---------------------------------------------------------------------------------- | ------------ |
+| `fixed`              | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed |              |
+| `id`                 | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed |              |
+| `no-border-collapse` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed |              |
+| `sticky-header`      | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed |              |
+
+### `<b-tbody>`
+
+#### Properties
+
+| Property                    | Status                                                                             | Observations |
+| --------------------------- | ---------------------------------------------------------------------------------- | ------------ |
+| `tbody-transition-handlers` | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed |              |
+| `tbody-transition-props`    | ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/0) Completed |              |
+
+### `<b-thead>`
+
+![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) **COMPLETED**
+
+### `<b-tfoot>`
+
+![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) **COMPLETED**
+
+### `<b-tr>`
+
+![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) **COMPLETED**
+
+### `<b-td>`
+
+![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) **COMPLETED**
+
+### `<b-th>`
+
+![](https://us-central1-progress-markdown.cloudfunctions.net/progress/100) **COMPLETED**
 
 ## Tab
 

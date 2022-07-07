@@ -4,7 +4,7 @@ module.exports = {
     'browser': true,
     'es6': true,
     'node': true,
-    'jest/globals': true,
+    'vue/setup-compiler-macros': true,
   },
   extends: [
     'eslint:recommended',
@@ -12,11 +12,12 @@ module.exports = {
     '@vue/typescript/recommended',
     'prettier',
   ],
+  plugins: ['prettier'],
   parserOptions: {
     ecmaVersion: 2021,
   },
-  plugins: ['jest'],
   rules: {
+    'prettier/prettier': ['warn', {endOfLine: 'auto'}],
     'no-alert': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

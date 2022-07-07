@@ -1,7 +1,8 @@
 import {mount} from '@vue/test-utils'
 import {createContainer, waitNT, waitRAF} from '../../../tests/utils'
 import {h} from 'vue'
-import BFormSelect from './BFormSelect'
+import BFormSelect from './BFormSelect.vue'
+import {afterAll, afterEach, beforeEach, describe, expect, it, vitest} from 'vitest'
 
 describe('form-select', () => {
   afterAll(() => {
@@ -303,26 +304,6 @@ describe('form-select', () => {
     wrapper.unmount()
   })
 
-  it('focus() and blur() methods work', async () => {
-    const wrapper = mount(BFormSelect, {
-      attachTo: createContainer(),
-    })
-
-    expect(document.activeElement).not.toBe(wrapper.element)
-
-    wrapper.vm.focus()
-    await waitNT(wrapper.vm)
-
-    expect(document.activeElement).toBe(wrapper.element)
-
-    wrapper.vm.blur()
-    await waitNT(wrapper.vm)
-
-    expect(document.activeElement).not.toBe(wrapper.element)
-
-    wrapper.unmount()
-  })
-
   it('has option elements from simple options array', async () => {
     const wrapper = mount(BFormSelect, {
       props: {
@@ -492,7 +473,7 @@ describe('form-select', () => {
   })
 
   it('has option elements from options legacy object format', async () => {
-    const spyWarn = jest.spyOn(console, 'warn').mockImplementationOnce((fn) => fn)
+    const spyWarn = vitest.spyOn(console, 'warn').mockImplementationOnce((fn) => fn)
     const wrapper = mount(BFormSelect, {
       props: {
         options: {one: 1, two: {value: 2, text: 'Two'}, three: 'Three'},
@@ -696,7 +677,7 @@ describe('form-select', () => {
     beforeEach(() => {
       // Mock `getBoundingClientRect()` so that the `isVisible(el)` test returns `true`
       // In our test below, all pagination buttons would normally be visible
-      Element.prototype.getBoundingClientRect = jest.fn(() => ({
+      Element.prototype.getBoundingClientRect = vitest.fn(() => ({
         width: 24,
         height: 24,
         top: 0,

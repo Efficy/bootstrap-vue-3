@@ -1,5 +1,5 @@
-import BAccordion from './BAccordion.vue'
-import BAccordionItem from './BAccordionItem.vue'
+import BAccordion from './BAccordion/BAccordion.vue'
+import BAccordionItem from './BAccordion/BAccordionItem.vue'
 import BAlert from './BAlert.vue'
 import BAvatar from './BAvatar/BAvatar.vue'
 import BAvatarGroup from './BAvatar/BAvatarGroup.vue'
@@ -7,8 +7,8 @@ import BBadge from './BBadge/BBadge.vue'
 import BBreadcrumb from './BBreadcrumb/BBreadcrumb.vue'
 import BBreadcrumbItem from './BBreadcrumb/BBreadcrumbItem.vue'
 import BButton from './BButton/BButton.vue'
-import BButtonGroup from './BButtonGroup.vue'
-import BButtonToolbar from './BButtonToolbar.vue'
+import BButtonGroup from './BButton/BButtonGroup.vue'
+import BButtonToolbar from './BButton/BButtonToolbar.vue'
 import BCard from './BCard/BCard.vue'
 import BCardBody from './BCard/BCardBody.vue'
 import BCardFooter from './BCard/BCardFooter.vue'
@@ -33,21 +33,23 @@ import BDropdownItem from './BDropdown/BDropdownItem.vue'
 import BDropdownItemButton from './BDropdown/BDropdownItemButton.vue'
 import BDropdownText from './BDropdown/BDropdownText.vue'
 import BForm from './BForm/BForm.vue'
+import BFormFloatingLabel from './BForm/BFormFloatingLabel.vue'
+import BFormInvalidFeedback from './BForm/BFormInvalidFeedback.vue'
+import BFormRow from './BForm/BFormRow.vue'
+import BFormText from './BForm/BFormText.vue'
+import BFormValidFeedback from './BForm/BFormValidFeedback.vue'
 import BFormCheckbox from './BFormCheckbox/BFormCheckbox.vue'
 import BFormCheckboxGroup from './BFormCheckbox/BFormCheckboxGroup.vue'
-import BFormFloatingLabel from './BFormFloatingLabel.vue'
 import BFormGroup from './BFormGroup/BFormGroup.vue'
 import BFormInput from './BFormInput/BFormInput.vue'
-import BFormInvalidFeedback from './BForm/BFormInvalidFeedback.vue'
 import BFormRadio from './BFormRadio'
 import BFormRadioGroup from './BFormRadio/BFormRadioGroup.vue'
-import BFormRow from './BForm/BFormRow.vue'
 import BFormSelect from './BFormSelect/BFormSelect.vue'
 import BFormSelectOption from './BFormSelect/BFormSelectOption.vue'
 import BFormSelectOptionGroup from './BFormSelect/BFormSelectOptionGroup.vue'
-import BFormText from './BForm/BFormText.vue'
+import BFormTag from './BFormTags/BFormTag.vue'
+import BFormTags from './BFormTags/BFormTags.vue'
 import BFormTextarea from './BFormTextarea/BFormTextarea.vue'
-import BFormValidFeedback from './BForm/BFormValidFeedback.vue'
 import BImg from './BImg.vue'
 import BInputGroup from './BInputGroup/BInputGroup.vue'
 import BInputGroupAddon from './BInputGroup/BInputGroupAddon.vue'
@@ -60,7 +62,7 @@ import BListGroupItem from './BListGroup/BListGroupItem.vue'
 import BModal from './BModal.vue'
 import BNav from './BNav.vue'
 import BNavItem from './BNavItem.vue'
-// import BNavItemDropdown from './BNavItemDropdown.vue'
+import BNavItemDropdown from './BNavItemDropdown.vue'
 import BOffcanvas from './BOffcanvas.vue'
 import BOverlay from './BOverlay/BOverlay.vue'
 import BPagination from './BPagination/BPagination.vue'
@@ -68,9 +70,20 @@ import BPopover from './BPopover.vue'
 import BProgress from './BProgress.vue'
 import BProgressBar from './BProgressBar.vue'
 import BRow from './BRow.vue'
+import BSkeleton from './BSkeleton/BSkeleton.vue'
+import BSkeletonIcon from './BSkeleton/BSkeletonIcon.vue'
+import BSkeletonTable from './BSkeleton/BSkeletonTable.vue'
+import BSkeletonWrapper from './BSkeleton/BSkeletonWrapper.vue'
 import BSpinner from './BSpinner.vue'
 import BTab from './BTabs/BTab.vue'
 import BTable from './BTable/BTable.vue'
+import BTableSimple from './BTable/BTableSimple.vue'
+import BTbody from './BTable/BTbody.vue'
+import BTd from './BTable/BTd.vue'
+import BTfoot from './BTable/BTfoot.vue'
+import BTh from './BTable/BTh.vue'
+import BThead from './BTable/BThead.vue'
+import BTr from './BTable/BTr.vue'
 import BTabs from './BTabs/BTabs.vue'
 import {BToast, BToaster, BToastPlugin} from './BToast'
 import BToastContainer from './BToast/BToaster.vue'
@@ -126,6 +139,8 @@ export default {
   BFormSelectOptionGroup,
   BFormText,
   BFormTextarea,
+  BFormTag,
+  BFormTags,
   BFormValidFeedback,
   BImg,
   BInputGroup,
@@ -139,7 +154,7 @@ export default {
   BModal,
   BNav,
   BNavItem,
-  // BNavItemDropdown,
+  BNavItemDropdown,
   BOffcanvas,
   BOverlay,
   BPagination,
@@ -147,9 +162,20 @@ export default {
   BProgress,
   BProgressBar,
   BRow,
+  BSkeleton,
+  BSkeletonIcon,
+  BSkeletonTable,
+  BSkeletonWrapper,
   BSpinner,
   BTab,
   BTable,
+  BTableSimple,
+  BTbody,
+  BTd,
+  BTfoot,
+  BTh,
+  BThead,
+  BTr,
   BToast,
   BToaster,
   BToastContainer,

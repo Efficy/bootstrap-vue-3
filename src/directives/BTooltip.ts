@@ -1,5 +1,5 @@
 import {Directive, DirectiveBinding} from 'vue'
-import {Tooltip} from 'bootstrap'
+import Tooltip from 'bootstrap/js/dist/tooltip'
 
 function resolveTrigger(modifiers: DirectiveBinding['modifiers']): Tooltip.Options['trigger'] {
   if (modifiers.manual) {
@@ -48,12 +48,12 @@ function resolveDelay(values: DirectiveBinding['value']): Tooltip.Options['delay
     return values.delay
   }
 
-  return 50
+  return 0
 }
 
 const BTooltip: Directive<HTMLElement> = {
   beforeMount(el, binding) {
-    el.setAttribute('data-bs-toogle', 'tooltip')
+    el.setAttribute('data-bs-toggle', 'tooltip')
 
     const isHtml = /<("[^"]*"|'[^']*'|[^'">])*>/.test(el.title)
     const trigger = resolveTrigger(binding.modifiers)
@@ -72,9 +72,10 @@ const BTooltip: Directive<HTMLElement> = {
 
     if (title !== '') {
       const instance = Tooltip.getInstance(el)
-      instance?.hide()
+      instance?.toggle()
       el.setAttribute('data-bs-original-title', title || '')
       el.setAttribute('title', '')
+      instance?.toggle()
     }
   },
   unmounted(el) {

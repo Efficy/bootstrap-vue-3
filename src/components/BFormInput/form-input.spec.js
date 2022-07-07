@@ -1,6 +1,8 @@
 import {mount} from '@vue/test-utils'
+import {afterEach, beforeEach, describe, expect, it, vitest} from 'vitest'
+
 import {createContainer, waitNT, waitRAF} from '../../../tests/utils'
-import BFormInput from './BFormInput'
+import BFormInput from './BFormInput.vue'
 
 describe('form-input', () => {
   it('has class form-control', async () => {
@@ -220,7 +222,7 @@ describe('form-input', () => {
   })
 
   it('renders text input when type not supported', async () => {
-    const warnHandler = jest.fn()
+    const warnHandler = vitest.fn()
 
     const wrapper = mount(BFormInput, {
       global: {
@@ -394,7 +396,7 @@ describe('form-input', () => {
   })
 
   it('emits a native focus event', async () => {
-    const spy = jest.fn()
+    const spy = vitest.fn()
     const wrapper = mount(BFormInput, {
       attrs: {
         onFocus: spy,
@@ -456,11 +458,13 @@ describe('form-input', () => {
   it('does not apply formatter on input when lazy', async () => {
     const wrapper = mount(BFormInput, {
       props: {
-        'formatter'(value) {
+        formatter(value) {
           return value.toLowerCase()
         },
-        'lazyFormatter': true,
-        'onUpdate:modelValue': async (modelValue) => wrapper.setProps({modelValue}),
+        lazyFormatter: true,
+      },
+      attrs: {
+        'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
       attachTo: createContainer(),
     })
@@ -484,12 +488,14 @@ describe('form-input', () => {
   it('applies formatter on blur when lazy', async () => {
     const wrapper = mount(BFormInput, {
       props: {
-        'modelValue': '',
-        'formatter'(value) {
+        modelValue: '',
+        formatter(value) {
           return value.toLowerCase()
         },
-        'lazyFormatter': true,
-        'onUpdate:modelValue': async (modelValue) => wrapper.setProps({modelValue}),
+        lazyFormatter: true,
+      },
+      attrs: {
+        'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
       attachTo: createContainer(),
     })
@@ -589,11 +595,13 @@ describe('form-input', () => {
   it('does not update value when non-lazy formatter returns false', async () => {
     const wrapper = mount(BFormInput, {
       props: {
-        'modelValue': 'abc',
-        'formatter'() {
+        modelValue: 'abc',
+        formatter() {
           return false
         },
-        'onUpdate:modelValue': async (modelValue) => wrapper.setProps({modelValue}),
+      },
+      attrs: {
+        'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
       attachTo: createContainer(),
     })
@@ -616,7 +624,7 @@ describe('form-input', () => {
 
   /* TODO: implement noWheel
   it('focused number input with no-wheel set to true works', async () => {
-    const spy = jest.fn()
+    const spy = vitest.fn()
     const wrapper = mount(BFormInput, {
       attachTo: createContainer(),
       props: {
@@ -644,7 +652,7 @@ describe('form-input', () => {
 
 
   it('focused number input with no-wheel set to false works', async () => {
-    const spy = jest.fn(() => {})
+    const spy = vitest.fn(() => {})
     const wrapper = mount(BFormInput, {
       attachTo: createContainer(),
       props: {
@@ -674,7 +682,7 @@ describe('form-input', () => {
 
 
   it('changing no-wheel after mount works', async () => {
-    const spy = jest.fn(() => {})
+    const spy = vitest.fn(() => {})
     const wrapper = mount(BFormInput, {
       attachTo: createContainer(),
       props: {
@@ -718,9 +726,11 @@ describe('form-input', () => {
   it('"number" modifier prop works', async () => {
     const wrapper = mount(BFormInput, {
       props: {
-        'type': 'text',
-        'number': true,
-        'onUpdate:modelValue': async (modelValue) => wrapper.setProps({modelValue}),
+        type: 'text',
+        number: true,
+      },
+      attrs: {
+        'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
     })
 
@@ -762,9 +772,11 @@ describe('form-input', () => {
   it('"lazy" modifier prop works', async () => {
     const wrapper = mount(BFormInput, {
       props: {
-        'type': 'text',
-        'lazy': true,
-        'onUpdate:modelValue': async (modelValue) => wrapper.setProps({modelValue}),
+        type: 'text',
+        lazy: true,
+      },
+      attrs: {
+        'onUpdate:modelValue': (modelValue) => wrapper.setProps({modelValue}),
       },
     })
 
@@ -813,7 +825,7 @@ describe('form-input', () => {
 
   /* TODO: implement debounce
   it('"debounce" prop works', async () => {
-    jest.useFakeTimers()
+    vitest.useFakeTimers()
     const wrapper = mount(BFormInput, {
       props: {
         type: 'text',
@@ -843,7 +855,7 @@ describe('form-input', () => {
     expect(wrapper.emitted('input')[1][0]).toBe('ab')
 
     // Advance timer
-    jest.runOnlyPendingTimers()
+    vitest.runOnlyPendingTimers()
     // Should update the v-model
     expect($input.element.value).toBe('ab')
     // `v-model` update event should have emitted
@@ -901,7 +913,7 @@ describe('form-input', () => {
     expect(wrapper.emitted('input')[5][0]).toBe('abcd')
 
     // Advance timer
-    jest.runOnlyPendingTimers()
+    vitest.runOnlyPendingTimers()
     // Should update the v-model
     expect($input.element.value).toBe('abcd')
     // `v-model` update event should not have emitted new event
@@ -913,32 +925,13 @@ describe('form-input', () => {
   })
   */
 
-  it('focus() and blur() methods work', async () => {
-    const wrapper = mount(BFormInput, {
-      attachTo: createContainer(),
-    })
-
-    const $input = wrapper.find('input')
-
-    expect(typeof wrapper.vm.focus).toBe('function')
-    expect(typeof wrapper.vm.blur).toBe('function')
-
-    expect(document.activeElement).not.toBe($input.element)
-    wrapper.vm.focus()
-    expect(document.activeElement).toBe($input.element)
-    wrapper.vm.blur()
-    expect(document.activeElement).not.toBe($input.element)
-
-    wrapper.unmount()
-  })
-
   // These tests are wrapped in a new describe to limit the scope of the getBCR Mock
   describe('prop `autofocus`', () => {
     const origGetBCR = Element.prototype.getBoundingClientRect
 
     beforeEach(() => {
       // Mock `getBoundingClientRect()` so that the `isVisible(el)` test returns `true`
-      Element.prototype.getBoundingClientRect = jest.fn(() => ({
+      Element.prototype.getBoundingClientRect = vitest.fn(() => ({
         width: 24,
         height: 24,
         top: 0,
