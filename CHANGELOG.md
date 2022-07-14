@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.19](https://github.com/cdmoro/bootstrap-vue-3/compare/v0.1.18...v0.1.19) (2022-07-13)
+
+
+### Bug Fixes
+
+* test commit please ignore ([a898b13](https://github.com/cdmoro/bootstrap-vue-3/commit/a898b1365ee860fad760d9d98be1bff1d6c1b6b1))
+
+## [0.1.18](https://github.com/cdmoro/bootstrap-vue-3/compare/v0.1.17...v0.1.18) (2022-07-12)
+
+
+### Bug Fixes
+
+* **BCardBody:** subTitleTag typo fix ([ac4e86a](https://github.com/cdmoro/bootstrap-vue-3/commit/ac4e86ab6f7f4dc1277498d943615d73a51fd5cc))
+
+## [0.1.17](https://github.com/cdmoro/bootstrap-vue-3/compare/v0.1.16...v0.1.17) (2022-07-12)
+
+
+### Bug Fixes
+
+* subtitle should be undefined by default ([1424108](https://github.com/cdmoro/bootstrap-vue-3/commit/1424108bf8ea6e38efd46bdb549cc26937504b17))
+
+## [0.1.16](https://github.com/cdmoro/bootstrap-vue-3/compare/v0.1.15...v0.1.16) (2022-07-11)
+
+
+### Bug Fixes
+
+* **463:** replace alias links back to relative ([b3750c4](https://github.com/cdmoro/bootstrap-vue-3/commit/b3750c45c9b8695215b0799ccf0bff77f580f932))
+* **docs:** import BV3 with the client config ([7361a98](https://github.com/cdmoro/bootstrap-vue-3/commit/7361a98c8a3c2c04891828c1a9f90412349d7fbb))
+* **docs:** load the component reference inside the plugin ([75b30ff](https://github.com/cdmoro/bootstrap-vue-3/commit/75b30ffb59e84f864b9c126a1996eb6e1d3c561d))
+* **workflow:** fix package name.. again ([9ab36e6](https://github.com/cdmoro/bootstrap-vue-3/commit/9ab36e6582e3bbb451341e1caf5514c7aa642e07))
+* **workflows:** release please bot will not update major versions for pre 1.0 ([81288ef](https://github.com/cdmoro/bootstrap-vue-3/commit/81288efebee35867f11e268c436d006737a8495a))
+
+## [0.1.15](https://github.com/cdmoro/bootstrap-vue-3/compare/v0.1.14...v0.1.15) (2022-07-08)
+
+
+### Bug Fixes
+
+* Invalid check for type name ([4d10742](https://github.com/cdmoro/bootstrap-vue-3/commit/4d107425e195676fbfe35e16a40192ae10224489))
+
 ### [0.1.13](https://github.com/cdmoro/bootstrap-vue-3/compare/v0.1.12...v0.1.13) (2022-05-10)
 
 ### Bug Fixes

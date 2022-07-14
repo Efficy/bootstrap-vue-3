@@ -25,13 +25,13 @@
 </template>
 
 <script setup lang="ts">
-// import type { BAvatarProps, BAvatarEmits } from '@/types/components'
-import {isEmptySlot} from '@/utils/dom'
-import type {BAvatarGroupParentData} from '@/types/components'
+// import type { BAvatarProps, BAvatarEmits } from '../types/components'
+import {isEmptySlot} from '../../utils/dom'
+import type {BAvatarGroupParentData} from '../../types/components'
 import {computed, inject, StyleValue, useSlots} from 'vue'
-import type {ColorVariant, InputSize} from '@/types'
-import {isNumber, isNumeric, isString} from '@/utils/inspect'
-import {toFloat} from '@/utils/number'
+import type {ColorVariant, InputSize} from '../../types'
+import {isNumber, isNumeric, isString} from '../../utils/inspect'
+import {toFloat} from '../../utils/number'
 import {injectionKey} from './BAvatarGroup.vue'
 
 interface BAvatarProps {
@@ -148,13 +148,6 @@ const textClasses = computed<string>(() => {
   return `text-${textVariant}`
 })
 
-const iconName = computed<string | undefined>(() => {
-  // TODO this should work with any icon font, eg icon="fa fa-cogs"
-  if (props.icon) return props.icon
-  if (!props.text && !props.src) return 'person-fill'
-  return undefined
-})
-
 const badgeStyle = computed<StyleValue>(() => {
   const offset = props.badgeOffset || '0px'
   const fontSize =
@@ -200,7 +193,6 @@ const onImgError = (e: Event): void => emit('img-error', e)
 </script>
 
 <script lang="ts">
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const computeSize = (value: any): string | null => {
   const calcValue = isString(value) && isNumeric(value) ? toFloat(value, 0) : value
   return isNumber(calcValue) ? `${calcValue}px` : calcValue || null

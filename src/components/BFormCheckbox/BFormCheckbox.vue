@@ -30,10 +30,10 @@
 </template>
 
 <script setup lang="ts">
-// import type {BFormCheckboxEmits, BFormCheckboxProps} from '@/types/components'
-import {getClasses, getInputClasses, getLabelClasses} from '@/composables/useFormCheck'
-import type {ButtonVariant, InputSize} from '@/types'
-import useId from '@/composables/useId'
+// import type {BFormCheckboxEmits, BFormCheckboxProps} from '../../types/components'
+import {getClasses, getInputClasses, getLabelClasses} from '../../composables/useFormCheck'
+import type {ButtonVariant, InputSize} from '../../types'
+import useId from '../../composables/useId'
 
 interface BFormCheckboxProps {
   ariaLabel?: string
@@ -60,7 +60,7 @@ interface BFormCheckboxProps {
     | Record<string, unknown>
     | number
   value?: Array<unknown> | Set<unknown> | boolean | string | Record<string, unknown> | number
-  modelValue?: Array<unknown> | Set<unknown> | boolean
+  modelValue?: Array<unknown> | Set<unknown> | boolean | string | Record<string, unknown> | number
 }
 
 const props = withDefaults(defineProps<BFormCheckboxProps>(), {
@@ -93,14 +93,14 @@ const input = ref<HTMLElement>(null as unknown as HTMLElement)
 const isFocused = ref<boolean>(false)
 
 const localValue = computed({
-  get: () => {
+  get: (): unknown[] | Set<unknown> | boolean | undefined => {
     if (props.uncheckedValue) {
       if (!Array.isArray(props.modelValue)) {
         return props.modelValue === props.value
       }
       return props.modelValue.indexOf(props.value) > -1
     }
-    return props.modelValue
+    return props.modelValue as unknown[] | Set<unknown> | boolean | undefined
   },
   set: (newValue: any) => {
     let emitValue = newValue
